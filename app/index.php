@@ -77,8 +77,9 @@ session_destroy();
                                 </form>
                         </div>  
                 </div>
-                <p class="center-body">Copyright © 2016 | Carlos Anselmi & Oscar Perez </p>
+                <p class="center-body">Copyright © 2016  | Carlos Anselmi & Oscar Perez </p>
         </body>
+
 <?php 
 }
 ?>
