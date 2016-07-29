@@ -64,7 +64,8 @@ session_destroy();
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <meta http-equiv="Content-Language" content="es"/>
                 <meta name="Description" CONTENT="Author: Carlos Anselmi">
-                <title>login-page</title>
+                <title>login page</title>
+                <!-- Marico el que lo lea! -->
         </head>
         <body>
                 <div class="login-page">
