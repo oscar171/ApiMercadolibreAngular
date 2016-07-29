@@ -1,0 +1,46 @@
+
+  <loading>
+  </loading>              
+    <div class=" offset-s1 left button-nav">
+        <button class="waves-effect waves-light btn" ng-click=orderBY('active')>Activas</button>
+        <button class="waves-effect waves-light btn" ng-click=orderBY('paused')>Pausadas</button>
+        <button class="waves-effect waves-light btn" ng-click=orderBY('closed')>Finalizadas</button>
+        <button class="waves-effect waves-light btn" ng-click=orderBY('')>Todas</button>
+    </div>
+    <div class="input-field col s3 offset-s4 right ">
+      <input class="input-buscar" placeholder="Buscar" id="first_name" type="text" ng-model="test" >
+    </div>
+    <!-- START TABLE -->
+    <table class="bordered centered ">
+          <thead>
+            <tr>
+                <th data-field="status">Estatus</th>
+                <th data-field="id">Imagen</th>
+                <th data-field="id">Id</th>
+                <th data-field="Title">Titulo</th> 
+                <th data-field="Price">Precio</th>
+                <th data-field="Status">Acciones</th>
+               
+            </tr>
+          </thead>
+          <tbody ng-repeat="x in listProduct  | filter: test">
+          
+            <tr >
+              <td >{{ x.status }}</td>
+              <td ><img src="{{ x.thumbnail}}" alt=""></td>
+              <td >{{ x.id}} </td>
+              <td >{{ x.title}} </td>
+              <td >{{ x.price | currency:"BsF"}} </td>
+              <td>
+
+                <button ng-click="ChangeStatus( x )" class="waves-effect waves-light btn-tiny">{{x.accion}}</button>
+                <button ng-click="ChangeFinish( x, $index )" class="waves-effect waves-light btn-tiny">{{x.accion2}}</button>
+              </td>
+            </tr>          
+          </tbody>
+    </table>
+  </div>
+  <!-- END TABLE -->
+  
+    
+</div>

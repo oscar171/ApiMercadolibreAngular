@@ -1,0 +1,43 @@
+<div class="row">
+ <loading>
+</loading>
+<label ng-show="title" for="">No posee preguntas sin responder</label>
+<div ng-show="body" style="display:block">
+<label  for="">Mostrando algunas de las {{total}} preguntas que tiene sin responder</label>     
+    <div ng-repeat="list in listed">
+      <label for="">Informacion de producto</label>
+      <ul>
+        <li><img src="{{list.thumbnail}}" alt=""></li>
+        <li>{{list.title}}</li>
+        <li>{{list.nickname}}</li>
+        <li>Pregunta:</li>
+        <li><input type="textbox" value="{{list.text}}" readonly/></li>
+        <li><button type="button" class="btn btn-primary" data-toggle="modal" ng-click="showModal(list)" ng-click="">Responder</button></li>
+        <li><button type="button" ng-click="delete(list,$index)" class="btn btn-danger" data-toggle="modal" >Eliminar</button></li>
+      </ul>
+        
+    </div>
+</div>
+    
+   <!-- Modal Questions-->
+<div class="modal fade questions-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-md">
+  <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Pregunta Realizada</h4>
+      </div>
+      <div ng-modal="modal.id">{{id}}</div>
+      <label for="">{{question}}</label>
+      
+      <input ng-model="modal.anwers" type="text">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" ng-click="anwers(modal)" class="btn btn-primary">Enviar</button>
+     </div>
+     </div>
+  </div>
+</div>
+ 
+
+</div> 
