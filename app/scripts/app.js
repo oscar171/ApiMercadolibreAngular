@@ -10,7 +10,8 @@
  */
 angular
   .module('api2App', [
-    'ngRoute'
+    'ngRoute',
+    'cgNotify'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -60,7 +61,7 @@ angular
   })
  .factory('MyData', function($websocket) {
       // Open a WebSocket connection
-      var dataStream = $websocket('ws://windowsboys.com.ve/Api2/app/notificaciones');
+      var dataStream = $websocket('ws://localhost/ApiMercadolibreAngular/app/socket/index');
 
       var collection = [];
 
