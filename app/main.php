@@ -35,8 +35,6 @@
     <script src="scripts/controllers/preguntas.js"></script>
     <script src="scripts/controllers/ventas.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script src="../bower_components/angular-websocket/dist/angular-websocket.js"></script>
-    <script type="text/javascript" src="https://rawgit.com/gdi2290/angular-websocket/v1.0.9/angular-websocket.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>         
     <script src="bower_components/bootstrap/dist/css/bootstrap.css"></script>         
     <!-- END scripts -->

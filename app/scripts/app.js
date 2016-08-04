@@ -10,8 +10,7 @@
  */
 angular
   .module('api2App', [
-    'ngRoute',
-    'ngWebSocket'
+    'ngRoute'
   ])
   .config(function ($routeProvider) {
     $routeProvider

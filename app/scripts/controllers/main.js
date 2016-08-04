@@ -10,6 +10,7 @@
 angular.module('api2App')
   .controller('MainCtrl',['$scope','$http', function ($scope,$http) {
 
+
     var access_token = '';
     var user_Info = '';
     $scope.listProduct ='';
@@ -58,13 +59,6 @@ angular.module('api2App')
         $scope.test=status;
 
     }
-
-    
-
-   
-    
-
-
 
     $scope.ChangeStatus = function(index) {
      $scope.loading=true;
