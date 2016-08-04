@@ -24,21 +24,21 @@
     <link rel="stylesheet" href="css/style-alerta.css">
     <link rel="stylesheet" href="css/style-section.css">
     <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet">   
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">   
+    <link rel="stylesheet" href="bower_components/angular-notify/dist/angular-notify.min.css" rel="stylesheet">   
     <!-- START scripts -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
+    <!-- START scripts -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="bower_components/angular-notify/dist/angular-notify.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/resumen.js"></script>
     <script src="scripts/controllers/preguntas.js"></script>
     <script src="scripts/controllers/ventas.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script src="../bower_components/angular-websocket/dist/angular-websocket.js"></script>
-    <script type="text/javascript" src="https://rawgit.com/gdi2290/angular-websocket/v1.0.9/angular-websocket.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>         
-    <script src="bower_components/bootstrap/dist/css/bootstrap.css"></script>         
     <!-- END scripts -->
     <!--<link rel="stylesheet" href="styles/main.css">-->
     <!-- endbuild -->

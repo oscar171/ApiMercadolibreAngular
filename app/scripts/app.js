@@ -11,7 +11,7 @@
 angular
   .module('api2App', [
     'ngRoute',
-    'ngWebSocket'
+    'cgNotify'
   ])
   .config(function ($routeProvider) {
     $routeProvider
