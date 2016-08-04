@@ -35,21 +35,21 @@ if($result)
                                         $sql="INSERT INTO preguntas (id, seller_id, item_id,status,fechaCreada,pregunta)
                                 VALUES ('".$result3['body']->id."', '".$result3['body']->seller_id."', '".$result3['body']->item_id."','".$result3['body']->status."','".$result3['body']->date_created."','".$result3['body']->text."')";
                                 $respon=$bd->ejecutar($sql);
-                                 $array['mensaje']="primer ciclo: ".$respon;
+                                 $array['mensaje']="Tienes una nueva pregunta: ".$respon;
                                 }
                                 if($result3['body']->status=="ANSWERED")
                                 {
                                 $sql="UPDATE preguntas
                                 SET status='ANSWERED',fechaRespuesta='".$result3['body']->answer->date_created."', respuesta='".$result3['body']->answer->text."' WHERE id='".$result3['body']->id."'";
                                 $respon=$bd->ejecutar($sql);
-                                 $array['mensaje']="segundo ciclo: ".$respon;
+                                 $array['mensaje']="Respondistes una pregunta: ".$respon;
                                 }
                                 if($result3['body']->status==404)
                                 {
                                   $sql="UPDATE preguntas
                                 SET status='eliminada' WHERE id='".$ver[2]."'";
                                 $respon=$bd->ejecutar($sql);
-                                 $array['mensaje']="Pregunta eliminada: ".$respon;
+                                 $array['mensaje']="Eliminastes una pregunta: ".$respon;
                                 }
                         }else
                         {
@@ -88,7 +88,7 @@ if($result)
                                       SET rating='".$result3['body']->feedback->purchase->rating."' WHERE id='".$ver[2]."'";
                                       $respon=$bd->ejecutar($sql);
                                       if($respon){
-                                      $array['mensaje']="calificacion comprador orden id: ".$ver[2].$respon;
+                                      $array['mensaje']="Nueva calificacion del comprador: ".$result3['body']->buyer->first_name.$result3['body']->buyer->last_name.$respon;
                                         }
                                         else{
                                           print_r($respon);
