@@ -78,6 +78,7 @@ if(mysql_num_rows($result)>0)
                       {
                       /*$sql="DELETE FROM notificaciones WHERE recurso = '".$x['recurso']."'";
                       $bd->ejecutar($sql);*/
+                      if($result3['body']->payment!=NULL)
                       $sql="INSERT INTO ventas (id_orden,id_seller, id_buyer, name_buyer,lastname_buyer,nickname_buyer,phone_buyer,fecha_creacion,fecha_expiracion,envio,status,item_id,item_title)VALUES ('".$result3['body']->id."', '".$result3['body']->buyer->id."', '".$result3['body']->seller->id."', '".$result3['body']->buyer->first_name."','".$result3['body']->buyer->last_name."','".$result3['body']->buyer->nickname."','".$result3['body']->buyer->phone->area_code.$result3['body']->buyer->phone->number."','".$result3['body']->date_created."','".$result3['body']->expiration_date."','".$result3['body']->shipping->status."','".$result3['body']->status."','".$result3['body']->order_items[0]->item->id."','".$result3['body']->order_items[0]->item->title."')";
                       $respon=$bd->ejecutar($sql);
                       $array['id']="new_order";
@@ -119,8 +120,8 @@ if(mysql_num_rows($result)>0)
                             }
                             else
                             {
-                            /*$sql="DELETE FROM notificaciones WHERE recurso = '".$x['recurso']."'";
-                            $bd->ejecutar($sql);*/
+                            $sql="DELETE FROM notificaciones WHERE recurso = '".$x['recurso']."'";
+                            $bd->ejecutar($sql);
                             $array['mensaje']="no han calificado";
                             }
                       }

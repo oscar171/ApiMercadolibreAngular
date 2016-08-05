@@ -11,7 +11,6 @@ $meli = new Meli(APP_ID, APP_KEY);
 //$bd=Db::getInstance();
 //$result3 = $meli->get('/orders/1144358391', $params);
 //1144817491
-echo $_SESSION['userid'];
 $params = array('access_token' => $_SESSION['access_token'],
                 'seller'=> $_SESSION['userid'],
                 'offset'=> 200);
