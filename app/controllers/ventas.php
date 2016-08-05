@@ -12,9 +12,8 @@ $meli = new Meli(APP_ID, APP_KEY);
 //$result3 = $meli->get('/orders/1144358391', $params);
 //1144817491
 $params = array('access_token' => $_SESSION['access_token'],
-                'seller'=> $_SESSION['userid'],
-                'offset'=> 200);
-$result3 = $meli->get('/orders/1151580029', $params);
+                'seller'=> $_SESSION['userid']);
+$result3 = $meli->get('/orders/1150765955', $params);
 
 /*//$result1= $result3['body']->results[0]->buyer;
 if($result3['httpCode']==200){
@@ -49,3 +48,4 @@ echo "<pre>";
 print_r ($result3);
 echo "</pre>";
  ?>
+ 

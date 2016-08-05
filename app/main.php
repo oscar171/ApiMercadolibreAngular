@@ -32,12 +32,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="bower_components/angular-notify/dist/angular-notify.min.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="js/ui-bootstrap-tpls-2.0.1.min.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/resumen.js"></script>
     <script src="scripts/controllers/preguntas.js"></script>
     <script src="scripts/controllers/ventas.js"></script>
+    <script src="js/ini.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>         
     <!-- END scripts -->
     <!--<link rel="stylesheet" href="styles/main.css">-->
@@ -55,8 +59,10 @@
                         <nav class="mv-navigation">
                                 <ul>
                                     <li class="notification-container">
-                                        <i class="fa fa-globe"></i>
+                                        <i popover-trigger="focus" popover-placement="bottom"
+                                        popover-append-to-body="true" uib-popover-html="{{notificaciones}}" class="fa fa-globe"></i>
                                         <span class="notification-counter">10</span>
+                                        
                                     </li>
                                         <li class="id-user">
                                         <span id="id-user">{{firstName}}{{LastName}}</span>

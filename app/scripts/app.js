@@ -11,7 +11,8 @@
 angular
   .module('api2App', [
     'ngRoute',
-    'cgNotify'
+    'cgNotify',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
