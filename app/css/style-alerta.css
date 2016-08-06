@@ -1,22 +1,14 @@
-.alerta{
-	width: 100%;
-	background-color: #6BAF79;
-    color: white;
-    font-style: oblique;
-    font-family: monospace;
-	margin: 0px auto;
-	text-align: center;
-	display: none;
-<<<<<<< .mine
+.notific:hover{
+
+	background-color: yellow; 
 }
-.alert{
-	
-=======
-	-webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+.questions{
+	display: inline-block !Important;
 }
-.alerta-error{
-	background-color: #FF412E;
->>>>>>> .r4728
+.border
+{
+	border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 1px outset #d2cfd6;
 }

@@ -58,10 +58,11 @@
                        <a ng-href="#/"> <h1 class="pointer resumen">OrionCorp</h1></a>
                         <nav class="mv-navigation">
                                 <ul>
-                                    <li class="notification-container">
-                                        <i popover-trigger="focus" popover-placement="bottom"
-                                        popover-append-to-body="true" uib-popover-html="{{notificaciones}}" class="fa fa-globe"></i>
-                                        <span class="notification-counter">10</span>
+                                    <li popover-title="Notificaciones" popover-placement="bottom"
+                                        popover-append-to-body="true" popover-trigger="'focus'"
+                                        uib-popover-template="'tpl.html'" class="notification-container" tabindex="0" >
+                                        <i class="fa fa-globe" ></i>
+                                        <span class="{{notiClass}}"">{{numNotif}}</span>
                                         
                                     </li>
                                         <li class="id-user">
@@ -74,6 +75,22 @@
                                 </ul>
                         </nav>
                 </header>
+                <button ng-click="nuevanotif()"> Nueva notficiacion</button>
+ <script type="text/ng-template" id="tpl.html">
+
+      <div class="popover-content">
+        <div ng-click="remove()" class="row">
+          <ul class="list-unstyled notific col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-repeat="noti in notificaciones">
+          <a style="text-decoration:none" ng-href="{{topic}}">
+            <li><strong>{{noti.mensaje}}</strong></li>
+            <li>{{noti.item}}</li>
+          
+            <hr>
+          </a>
+          </ul>
+        </div>
+      </div> 
+    </script>
 
   <div class="mv-container">
     <nav class='mv-menu-navigation'>

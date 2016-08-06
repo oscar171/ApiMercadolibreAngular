@@ -229,9 +229,9 @@ angular.module('api2App')
   }])
   .controller('IndexCtrl',['$scope','$http','$sce', function ($scope,$http,$sce){
 
-    $scope.notificaciones=[{mensaje:"Nueva pregunta"},{mensaje:"Nueva pregunta 3"},{mensaje:"Nueva pregunta 2"}];
-    $scope.htmlPopover = $sce.trustAsHtml("<div>Notificaciones</div><ul><li ng-repeat='noti in notificaciones'>{{noti.mensaje}}</li></ul>");
-    $http({
+    $scope.numNotif='';
+    $scope.notificaciones=[{mensaje:"Te Preguntaron algo",item:"item1"},{mensaje:"Te Preguntaron algo",item:"items2"},{mensaje:"Te compraron algo",item:"items3"}];
+       $http({
     method: 'GET', 
     url: 'controllers/mainControl.php'
     }).success(function(data, status, headers, config) {
@@ -243,4 +243,17 @@ angular.module('api2App')
       alert("Ha fallado la petición. Estado HTTP:"+status);
       
     });
+    $scope.nuevanotif= function(){
+
+      $scope.notificaciones.push({mensaje:"nuevo Mensaje",item:"nuevo item"});
+      $scope.notiClass='notification-counter';
+      $scope.numNotif=parseInt($scope.numNotif+1);
+    }
+    $scope.remove=function(){  
+    $scope.notiClass='';
+    $scope.numNotif='';  
+    }
+    $scope.topic='#/preguntas';
+    $scope.numNotif=parseInt($scope.numNotif+1);
+    $scope.notiClass='notification-counter';
   }]);

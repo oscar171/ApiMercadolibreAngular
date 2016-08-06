@@ -73,8 +73,6 @@ angular.module('api2App')
       
       $(".questions-modal-md").modal("hide");
       var data=[{id:$scope.id},{resp:modal.anwers}];
-
-      alert(modal.anwers);
       $scope.loading=true; 
       console.log($scope.loading);
        $http.post('controllers/responder.php',data)
@@ -85,8 +83,8 @@ angular.module('api2App')
                      $scope.loading=false; 
                     console.log($scope.loading); 
                    notify("Pregunta respondida con exito");
+                   $scope.listed.splice(index,1);
                    $scope.modal.anwers='';
-                   // $scope.listProduct.splice(0,1);
               } else
              {
             $scope.loading=false;

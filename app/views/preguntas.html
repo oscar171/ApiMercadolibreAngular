@@ -1,40 +1,53 @@
-<div class="row">
- <loading>
-</loading>
-<label ng-show="title" for="">No posee preguntas sin responder</label>
-<div ng-show="body" style="display:block">
-<label  for="">Mostrando algunas de las {{total}} preguntas que tiene sin responder</label>     
-    <div ng-repeat="list in listed">
-      <label for="">Informacion de producto</label>
-      <ul>
-        <li><img src="{{list.thumbnail}}" alt=""></li>
-        <li>{{list.title}}</li>
-        <li>{{list.nickname}}</li>
-        <li>Pregunta:</li>
-        <li><input type="textbox" value="{{list.text}}" readonly/></li>
-        <li><button type="button" class="btn btn-primary" data-toggle="modal" ng-click="showModal(list)" ng-click="">Responder</button></li>
-        <li><button type="button" ng-click="delete(list,$index)" class="btn btn-danger" data-toggle="modal" >Eliminar</button></li>
-      </ul>
-        
+<div>
+<loading></loading>
+<h3 class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2" ng-show="title" for="">No posee preguntas sin responder</h3>
+  <div  ng-show="body">
+    <div class="row">
+      <div class="col-md-12 col-md-offset-3">
+      <h3 for=""> Preguntas  sin responder</h3>
+      
+      </div>
+      <hr>
     </div>
+    <ul class="row" ng-repeat="list in listed">
+          
+          <li> 
+                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2"><img class="img-thumbnail" src="{{list.thumbnail}}" alt=""></div>
+                <div class="row">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 ">
+                <label for="">Acticulo</label><br>{{list.title}}</div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" >
+                <label for="">Usuario </label> <br> {{list.nickname}}</div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4"><h4>Pregunta:</h4><pre>{{list.text}}</pre></div>
+               
+                
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 col-md-offset-1 col-lg-offset-1">
+                <button type="button" class="btn btn-primary" data-toggle="modal" ng-click="showModal(list)">Responder</button>
+                <button type="button" ng-click="delete(list,$index)" class="btn btn-danger" data-toggle="modal" >Eliminar</button>
+                </div>
+              </div>
+             <hr>
+        </li> 
+    </ul>
+  </div>
 </div>
     
    <!-- Modal Questions-->
 <div class="modal fade questions-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-md">
-  <div class="modal-content">
-     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Pregunta Realizada</h4>
-      </div>
-      <div ng-modal="modal.id">{{id}}</div>
-      <label for="">{{question}}</label>
-      
-      <input ng-model="modal.anwers" type="text">
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" ng-click="anwers(modal)" class="btn btn-primary">Enviar</button>
-     </div>
+    <div class="modal-content">
+       <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Pregunta Realizada</h4>
+        </div>
+        <div class="container">
+          <div ng-modal="modal.id">{{id}} <br> <pre class=" col-sm-3 col-md-7 col-lg-7">{{question}}</pre></div>
+          <textarea class=" col-sm-3 col-md-7 col-lg-7" ng-model="modal.anwers" name="" id="resp" cols="70" rows="2"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" ng-click="anwers(modal)" class="btn btn-primary">Enviar</button>
+       </div>
      </div>
   </div>
 </div>
