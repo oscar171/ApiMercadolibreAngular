@@ -13,7 +13,6 @@ session_destroy();
     session_start('test');
     $user = $meli->authorize($_GET['code'], 'http://localhost/ApiMercadolibreAngular/app/index.php');
     // Now we create the sessions with the authenticated user
-    print_r($user);
     $_SESSION['access_token'] = $user['body']->access_token;
     $_SESSION['expires_in'] = time() + $user['body']->expires_in;
     $_SESSION['refresh_token'] = $user['body']->refresh_token;

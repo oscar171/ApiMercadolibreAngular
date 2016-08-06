@@ -8,14 +8,12 @@
  * Controller of the api2App
  */
 angular.module('api2App')
-  .controller('ResumenCtrl',['$scope','$http','$interval','$interval','$filter', function ($scope,$http,$interval,$filter) {
+  .controller('ResumenCtrl',['$scope','$http','$interval','notify', function ($scope,$http,$interval,notify) {
 
-    $scope.loading=true;
-    $scope.body=false;
+    $scope.loading=false;
+    $scope.body=true;
     console.log($scope.loading,$scope.body);
-    
       $scope.Timer = null;
- 
             //Timer start function.
             $scope.StartTimer = function () {
                 //Set the Timer start message.
@@ -24,7 +22,7 @@ angular.module('api2App')
                 //Initialize the Timer to run every 1000 milliseconds i.e. one second.
                 $scope.Timer = $interval(function () {
                    $scope.enviarsms();
-                }, 1000);
+                }, 5000);
             };
  
             //Timer stop function.
@@ -38,7 +36,7 @@ angular.module('api2App')
                     $interval.cancel($scope.Timer);
                 }
             }
-    $http({
+    /*$http({
     method: 'GET', 
     url: 'controllers/resumen-view.php'
     }).success(function(data, status, headers, config) {
@@ -59,29 +57,31 @@ angular.module('api2App')
     }).error(function(data, status, headers, config) {
       alert("Ha fallado la petición. Estado HTTP:"+status);
       
-    });
+    });*/
     $scope.enviarsms= function()
     {
-      /*var number='04149414743';
-      var text="Gracias por su compra por mercadolibre, su numero de orden es 111111111 dirigirse a este link para completar su compra www.venegangas.com/venegangas/regristromercadolibre";      
+      
+      /*var number='04144378192';
+      var text="Gracias por su compra. Registrese aqui www.venegangas.com para continuar con su pedido "+1111111111+" hecho por mercadolibre";      
       $http.jsonp('http://www.orioncorp.com.ve:28703/cgi-bin/sendsms?username=program1&password=43912&to='+number+'&text='+text)
       .then(function(response)
       {
        console.log(response);
-      })*/       
+      }) */      
               
-     $http.get('controllers/prueba.php')
+     /*$http.get('controllers/prueba.php')
       .then(function(response)
       {
-          console.log(response);
-          /*if (response.data.mensaje=="new_order")
+          console.log(response.data);
+          notify(response.data.mensaje);
+
+          /*
+          if (response.data.id=="new_order")
              {
-              alert(response.data.data.telefono1);
                 var num1=response.data.data.telefono1.replace(/[^\d]/g, '');
                 var num2=response.data.data.telefono2.replace(/[^\d]/g, '');
-                alert(num1);
-                var text="Gracias por su compra por mercadolibre, su numero de orden es "+response.data.data.new_order_id+" por favor dirigirse a este link para completar su compra www.venegangas.com";      
-                $http.jsonp('http://www.orioncorp.com.ve:28703/cgi-bin/sendsms?username=program1&password=43912&to='+num1+'&text='+text)
+                var text="Gracias por su compra. Registrese aqui www.venegangas.com para continuar con su pedido "+response.data.data.new_order_id+" hecho por mercadolibre";      
+                $http.jsonp('http://orioncorp.com.ve:28703/cgi-bin/sendsms?username=program1&password=43912&to='+num1+'&text='+text)
                 .then(function(response)
                 {
                 console.log(response);
@@ -89,8 +89,10 @@ angular.module('api2App')
               }
               else
               {
-                alert(response.mensaje);
-              }*/
+                //alert(response.data.mensaje);
+              }
+          
       })
+      */
    }
 }]);

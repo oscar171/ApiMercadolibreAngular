@@ -4,10 +4,10 @@ session_start();
 require_once '../libs_php/Mercadilivre/Meli/meli.php';
 require_once '../config.php';
 $meli = new Meli(APP_ID, APP_KEY);
-$id=intval($data[0]->id);
-$params = array('access_token' => $_SESSION['access_token'],
-	            'questions_id' => $id, 'text' => $data[1]->resp);
-$response = $meli->post('/answers',$params);
+$params = array('access_token' => $_SESSION['access_token']);
+$body =  array(	'question_id' => $data[0]->id,
+	            'text' => $data[1]->resp);
+$response = $meli->post('/answers',$body,$params);
 
 if($response['httpCode']==200)
 	{$result = array('mensaje' => 'success' );}

@@ -8,7 +8,7 @@
  * Controller of the api2App
  */
 angular.module('api2App')
-  .controller('PreguntasCtrl',['$scope','$http', function ($scope,$http) {
+  .controller('PreguntasCtrl',['$scope','$http','notify', function ($scope,$http,notify) {
     
      $scope.loading=true;
      $scope.title=false;
@@ -36,7 +36,7 @@ angular.module('api2App')
               {
                 $scope.loading=false;
               console.log($scope.title);
-                alert(response.data.mensaje);
+                notify(response.data.mensaje);
               }
             }
     });
@@ -52,7 +52,7 @@ angular.module('api2App')
                     if (response.data.mensaje == "success") {
                      $scope.loading=false; 
                     console.log($scope.loading); 
-                   alert("Pregunta eliminada");
+                   notify("Pregunta eliminada");
                    $scope.listed.splice(index,1);
               } else
              {
@@ -84,7 +84,7 @@ angular.module('api2App')
                     if (response.data.mensaje == "success") {
                      $scope.loading=false; 
                     console.log($scope.loading); 
-                   alert("Pregunta respondida con exito");
+                   notify("Pregunta respondida con exito");
                    $scope.modal.anwers='';
                    // $scope.listProduct.splice(0,1);
               } else

@@ -10,7 +10,6 @@
 angular.module('api2App')
   .controller('MainCtrl',['$scope','$http', function ($scope,$http) {
 
-
     var access_token = '';
     var user_Info = '';
     $scope.listProduct ='';
@@ -59,6 +58,13 @@ angular.module('api2App')
         $scope.test=status;
 
     }
+
+    
+
+   
+    
+
+
 
     $scope.ChangeStatus = function(index) {
      $scope.loading=true;
@@ -221,9 +227,10 @@ angular.module('api2App')
      
 
   }])
-  .controller('IndexCtrl',['$scope','$http', function ($scope,$http){
+  .controller('IndexCtrl',['$scope','$http','$sce', function ($scope,$http,$sce){
 
-
+    $scope.notificaciones=[{mensaje:"Nueva pregunta"},{mensaje:"Nueva pregunta 3"},{mensaje:"Nueva pregunta 2"}];
+    $scope.htmlPopover = $sce.trustAsHtml("<div>Notificaciones</div><ul><li ng-repeat='noti in notificaciones'>{{noti.mensaje}}</li></ul>");
     $http({
     method: 'GET', 
     url: 'controllers/mainControl.php'
