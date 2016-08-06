@@ -1,0 +1,37 @@
+<div class="row" ng-controller="VentasCtrl">
+ <div ng-show="title">
+   No posee ordenes Activas
+ </div>
+ <div ng-show="body"> 
+  <table>
+    <tr>
+      <th>InfoBuyer</th>
+      <th>InfoItem</th>
+      <th>InfoOrder</th>
+    </tr>
+    <tbody >
+
+    <tr>
+      <td>{{ x.buyer.first_name}}{{ x.buyer.last_name}}<br>
+      {{ x.buyer.nickname}}<br>
+      {{ x.buyer.phone.number}}</td>
+    
+    
+        <td>{{ x.order_items.item.title}}<br>
+        {{ x.order_items.unit_price}}<br>
+        {{ x.order_items.quantity}}</td>
+    
+     
+      <td>fecha de creacion:
+        {{ x.date_created | date:"dd-MM-yyyy"}}<br>
+        Fecha de expiracion:
+        {{ x.expiration_date | date:"dd-MM-yyyy"}}<br>
+        Estatus : {{x.status}}<br>
+        Calificacion del comprador:
+        {{ x.feedback.purchase.rating}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>

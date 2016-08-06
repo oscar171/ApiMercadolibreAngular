@@ -1,0 +1,64 @@
+<div id="list-resumen" class="row">
+<loading>
+</loading> 
+   <div ng-show="body">
+            <h3>RESUMEN</h3>
+            <table id='getValues' border='1' class="table" style="border: hidden">
+            <style>
+                tr,td{
+                    margin:0px auto!important;
+                }
+            </style>
+            <button ng-click="enviarsms()">Enviar mensaje</button>
+                <div ng-bind = "Message">
+        </div>
+        <br />
+        <input type="button" value="Start Timer" ng-click="StartTimer()" />
+        <input type="button" value="Stop Timer" ng-click="StopTimer()" />
+        
+                <tr>
+                    <td>
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                         <h4>&nbsp Preguntas</h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a ng-href="#/preguntas"><button class="btn btn-default gray-background">{{questions}}</button>&nbsp<span>Que aún no respondiste</span></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-ticket" aria-hidden="true"></i>
+                    <h4>&nbspPublicaciones</h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a ng-href="#/publicaciones"><button button class="btn btn-default black-background prod_publicados">{{activas}}  </button>&nbsp<span>Activas</span></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a ng-href="#/publicaciones"><button button ng-href="#/publicaciones" class="btn btn-default gray-background prod_publicados">{{pausadas}}  </button>&nbsp<span>Pausadas</span></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a ng-href="#/publicaciones"><button ng-href="#/publicaciones" button class="btn btn-default black-background" id="prod_finalizados">{{finalizadas}}</button>&nbsp<span>Finalizadas</span></a></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                    <h4>&nbspOperaciones</h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td><button button class="btn btn-default black-background">1</button>&nbsp<span>Compras sin calificar</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><button button class="btn btn-default black-background">2</button>&nbsp<span>Ventas sin calificar</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><button button class="btn btn-default gray-background">0</button>&nbsp<span>Ventas sin calificación del comprador</span>
+                    </td>
+                </tr>
+            </table> 
+        </div> 
+    </div>
