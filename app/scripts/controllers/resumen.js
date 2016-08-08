@@ -13,30 +13,8 @@ angular.module('api2App')
     $scope.loading=false;
     $scope.body=true;
     console.log($scope.loading,$scope.body);
-      $scope.Timer = null;
-            //Timer start function.
-            $scope.StartTimer = function () {
-                //Set the Timer start message.
-                $scope.Message = "Timer started. ";
- 
-                //Initialize the Timer to run every 1000 milliseconds i.e. one second.
-                $scope.Timer = $interval(function () {
-                   $scope.enviarsms();
-                }, 5000);
-            };
- 
-            //Timer stop function.
-            $scope.StopTimer = function () {
- 
-                //Set the Timer stop message.
-                $scope.Message = "Timer stopped.";
- 
-                //Cancel the Timer.
-                if (angular.isDefined($scope.Timer)) {
-                    $interval.cancel($scope.Timer);
-                }
-            }
-    /*$http({
+
+    $http({
     method: 'GET', 
     url: 'controllers/resumen-view.php'
     }).success(function(data, status, headers, config) {
@@ -57,5 +35,5 @@ angular.module('api2App')
     }).error(function(data, status, headers, config) {
       alert("Ha fallado la petición. Estado HTTP:"+status);
       
-    });*/
+    })
 }]);

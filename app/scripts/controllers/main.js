@@ -230,13 +230,7 @@ angular.module('api2App')
   .controller('IndexCtrl',['$scope','$http','$sce','$interval','notify', function ($scope,$http,$sce,$interval,notify){
 
     $scope.numNotif='';
-    $scope.notificaciones = {
-      get : function(index, count, success) {
-    var result = [{mensaje:"Te Preguntaron algo",item:"Camisa Manga Larga Tommy",topic:"#/preguntas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"},{mensaje:"Te Preguntaron algo",item:"items2",topic:"#/preguntas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"},{mensaje:"Te compraron algo",item:"items3",topic:"#/ventas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"},{mensaje:"Te compraron algo",item:"items3",topic:"#/ventas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"},{mensaje:"Te compraron algo",item:"items3",topic:"#/ventas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"},{mensaje:"Te compraron algo",item:"items3",topic:"#/ventas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"}];
-     index = index <= 0 ? index + 1 : index -1;
-    success(result.slice(index, index + count))
-      }
-    };
+    $scope.notificaciones=[{mensaje:"Te Preguntaron algo",item:"Camisa Manga Larga Tommy",topic:"#/preguntas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"},{mensaje:"Te Preguntaron algo",item:"items2",topic:"#/preguntas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"},{mensaje:"Te compraron algo",item:"items3",topic:"#/ventas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"},{mensaje:"Te compraron algo",item:"items3",topic:"#/ventas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"},{mensaje:"Te compraron algo",item:"items3",topic:"#/ventas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"},{mensaje:"Te compraron algo",item:"items3",topic:"#/ventas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"}];
     $http({
     method: 'GET', 
     url: 'controllers/mainControl.php'
@@ -249,53 +243,42 @@ angular.module('api2App')
       alert("Ha fallado la petición. Estado HTTP:"+status);
       
     });
+    $interval(function () {
+                   $scope.nuevanotif();
+                }, 10000);
       $scope.nuevanotif= function()
-    {
-      
-      /*var number='04144378192';
-      var text="Gracias por su compra. Registrese aqui www.venegangas.com para continuar con su pedido "+1111111111+" hecho por mercadolibre";      
-      $http.jsonp('http://www.orioncorp.com.ve:28703/cgi-bin/sendsms?username=program1&password=43912&to='+number+'&text='+text)
-      .then(function(response)
-      {
-       console.log(response);
-      }) */      
+    { 
      $http.get('controllers/prueba.php')
       .then(function(response)
       {
           console.log(response);
           if (response.data.id=="new_order")
              {
-                var num1=response.data.data.telefono1.replace(/[^\d]/g, '');
-                var num2=response.data.data.telefono2.replace(/[^\d]/g, '');
-                var text="Gracias por su compra. Registrese aqui www.venegangas.com para continuar con su pedido "+response.data.data.new_order_id+" hecho por mercadolibre";      
-                $http.jsonp('http://orioncorp.com.ve:28703/cgi-bin/sendsms?username=program1&password=43912&to='+num1+'&text='+text)
-                .then(function(response)
+              $scope.notificaciones.unshift({mensaje:response.data.mensaje,item:response.data.title,thumbnail:response.data.thumbnail,topic:"#/ventas"});
+              $scope.notiClass='notification-counter';
+              $scope.numNotif=parseInt($scope.numNotif+1);
+              var num1=response.data.data.telefono1.replace(/[^\d]/g, '');
+              //var num2=response.data.data.telefono2.replace(/[^\d]/g, '');
+              
+              var text="Gracias por su compra. Registrese aqui www.venegangas.com para continuar con su pedido "+response.data.data.new_order_id+" hecho por mercadolibre";      
+              $http.jsonp('http://orioncorp.com.ve:28703/cgi-bin/sendsms?username=program1&password=43912&to='+num1+'&text='+text)
+              .then(function(response)
                 {
                 console.log(response);
-                }) 
+                })
               }
               if (response.data.id=="new_question")
              {
-              $scope.notificaciones.push({mensaje:response.data.mensaje,item:response.data.title,thumbnail:response.data.thumbnail,topic:"#/preguntas"});
+              $scope.notificaciones.unshift({mensaje:response.data.mensaje,item:response.data.title,thumbnail:response.data.thumbnail,topic:"#/preguntas"});
               $scope.notiClass='notification-counter';
               $scope.numNotif=parseInt($scope.numNotif+1);   
              }
           
       })
-      
-   }
-   $scope.loadMore = function() {
-    var last = $scope.notificaciones[$scope.notificaciones.length - 1];
-    for(var i = 1; i <= 4; i++) {
-      $scope.notificaciones.push(last + i);
     }
-  };
 
     $scope.remove=function(){  
     $scope.notiClass='';
     $scope.numNotif='';  
     }
-    $scope.topic='#/preguntas';
-    $scope.numNotif=parseInt($scope.numNotif+1);
-    $scope.notiClass='notification-counter';
   }]);

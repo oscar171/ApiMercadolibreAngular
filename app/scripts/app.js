@@ -13,9 +13,9 @@ angular
     'ngRoute',
     'cgNotify',
     'ui.bootstrap',
-    'ngTable',
     'ui.scroll',
-    'ui.scroll.jqlite'
+    'ui.scroll.jqlite',
+    'ngTable'
   ])
   .config(function ($routeProvider) {
     $routeProvider

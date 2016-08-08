@@ -1,4 +1,5 @@
 <div class="row" ng-controller="VentasCtrl">
+<loading></loading>
  <div ng-show="title">
    No posee ordenes Activas
  </div>
@@ -13,23 +14,25 @@
     </thead>
     <tbody ng-repeat="venta in $data" >
     <tr>
-      <td>Nombre: {{ venta.Comprador}}<br>
-      Pseudonimo: {{ venta.Pseudonimo}}<br>
-      Contacto: {{ venta.Telefonos}}</td>
+      <td><strong>Nombre:</strong> {{ venta.Comprador}}<br>
+      <strong>Pseudonimo:</strong> {{ venta.Pseudonimo}}<br>
+      <strong>Contacto:</strong> {{ venta.Telefonos}}</td>
     
     
-        <td>Titulo: {{ venta.Item}}
+        <td>
+        <img class="img-thumbnail" src="{{venta.thumbnail}}" alt=""><br>
+        <strong>Titulo:</strong> {{ venta.Item}}
         <br>
-        Metodo de pago: {{venta.tipo}}
+        <strong>Metodo de pago:</strong> {{venta.tipo}}
         </td>
      
       <td>
-      Orden Nº: {{ venta.Orden}} <br>
-      fecha de creacion:
+      <strong>Orden Nº:</strong> {{ venta.Orden}} <br>
+      <strong>fecha de creacion:</strong>
         {{ venta.Comprado | date:"dd-MM-yyyy"}}<br>
-        Pago : {{venta.Pago}}<br>
-        Envio : {{venta.Envio}} <br>
-        Calificacion del comprador:
+        <strong>Pago :</strong> {{venta.Pago}}<br>
+        <strong>Envio :</strong> {{venta.Envio}} <br>
+        <strong>Calificacion del comprador:</strong>
         {{ venta.Calificacion}}</td>
     </tr>
     </tbody>

@@ -78,14 +78,13 @@
                                 </ul>
                         </nav>
                 </header>
-                <button ng-click="nuevanotif()"> Nueva notficiacion</button>
  <script type="text/ng-template" id="tpl.html">
 
       <div class="popover-content">
         <div ng-click="remove()" class="row">
-          <div ui-scroll-viewport style="height:300px">
-            <div class="col-xs-12 col-sm-12" ui-scroll="noti in notificaciones" buffer-size='3'>
-            <a style="text-decoration:none" ng-href="{{topic}}">
+          <div  class="scroll">
+            <div class="col-xs-12 col-sm-12" ng-repeat="noti in notificaciones">
+            <a style="text-decoration:none" ng-href="{{noti.topic}}">
               <div class="col-xs-12 col-sm-12"><strong>{{noti.mensaje}}</strong></div>
               <div class="col-xs-5 col-sm-5" ><img class="img-thumbnail img-responsive" src="{{noti.thumbnail}}" alt=""></div>
               <div class="col-xs-7 col-sm-7">{{noti.item}}</div>

@@ -15,7 +15,7 @@ $result3 = $meli->get('/orders/1150765955', $params);
 */
 
     $bd=Db::getInstance();
-    $sql="SELECT * FROM ventas"; 
+    $sql="SELECT * FROM ventas WHERE id_seller='".$_SESSION['userid']."'"; 
     $result=$bd->ejecutar($sql);
     //WHERE userid=".$_SESSION['userid']."";
     if(mysql_num_rows($result)>0)
@@ -38,6 +38,15 @@ $result3 = $meli->get('/orders/1150765955', $params);
             {
              $envio=$x['envio'];   
             }
+            if($x['status']=='confirmed')
+            {
+                $status="Pendiente";
+            }
+            else
+            {
+                $status=$x['status'];
+
+            }
            $orderData=array('Orden' => $x['id_orden'],
                  'Comprador' => $x['name_buyer']." ".$x['lastname_buyer'],
                  'Pseudonimo' => $x['nickname_buyer'],
@@ -45,9 +54,10 @@ $result3 = $meli->get('/orders/1150765955', $params);
                  'Item'=> $x['item_title'],
                  'Comprado'=> $x['fecha_creacion'],
                  'tipo' => $x['payment_type'],
-                 'Pago'=> $x['status'],
+                 'Pago'=> $status,
                  'Envio' => $envio,
-                 'Calificacion' => $rating);
+                 'Calificacion' => $rating,
+                 'thumbnail'=> $x['thumbnail']);
         $arrayResult['order'] = $orderData;
         
         }
@@ -55,7 +65,7 @@ $result3 = $meli->get('/orders/1150765955', $params);
     }
     else
     {
-        $arrayResult['mensaje']= "No data";
+        $arrayResult['mensaje']= "nodata";
     }
   
  echo json_encode($arrayResult);
