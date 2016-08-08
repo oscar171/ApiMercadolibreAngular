@@ -27,13 +27,19 @@ if(mysql_num_rows($result)>0)
              $result3 = $meli->get('/questions/'.$ver[2], $params);
             if($result3['httpCode']==200 || $result3['httpCode']==404 )
               {
-                $sql="DELETE FROM notificaciones WHERE recurso = '".$x['recurso']."'";
-                $bd->ejecutar($sql);
+                /*$sql="DELETE FROM notificaciones WHERE recurso = '".$x['recurso']."'";
+                $bd->ejecutar($sql);*/
                 if($result3['body']->status=="UNANSWERED")
                 {
                 $sql="INSERT INTO preguntas (id, seller_id, item_id,status,fechaCreada,pregunta,fechaRespuesta,respuesta) VALUES ('".$result3['body']->id."', '".$result3['body']->seller_id."', '".$result3['body']->item_id."','".$result3['body']->status."','".$result3['body']->date_created."','".$result3['body']->text."')";
                 $respon=$bd->ejecutar($sql);
-                $array['mensaje']="Nueva pregunta id: ".$result3['body']->id;
+                $config='title,thumbnail';
+                $params2 = array('access_token' => $_SESSION['access_token'],'attributes' => $config);
+                $result2 = $meli->get('/items/'.$result3['body']->item_id, $params2);
+                $array['id']="new_question";
+                $array['mensaje']="Te preguntaron algo";
+                $array['title']=$result2['body']->title;
+                $array['thumbnail']=$result2['body']->thumbnail;
                 }
                 if($result3['body']->status=="ANSWERED")
                 {
@@ -76,11 +82,14 @@ if(mysql_num_rows($result)>0)
                    $bol=$bd->ejecutar($sql);
                       if(mysql_num_rows($bol)<=0)
                       {
-                      /*$sql="DELETE FROM notificaciones WHERE recurso = '".$x['recurso']."'";
-                      $bd->ejecutar($sql);*/
+                        $config='thumbnail';
+                        $params2 = array('attributes' => $config);
+                        $result2 = $meli->get('/items/'.$result3['body']->order_items[0]->item->id, $params2);
+                      $sql="DELETE FROM notificaciones WHERE recurso = '".$x['recurso']."'";
+                      $bd->ejecutar($sql);
                             if($result3['body']->payments==NULL)
                             {
-                            $sql="INSERT INTO ventas (id_orden,id_seller, id_buyer, name_buyer,lastname_buyer,nickname_buyer,phone_buyer,phone_buyer2,fecha_creacion,fecha_expiracion,envio,status,item_id,item_title,payment_type)VALUES ('".$result3['body']->id."', '".$result3['body']->buyer->id."', '".$result3['body']->seller->id."', '".$result3['body']->buyer->first_name."','".$result3['body']->buyer->last_name."','".$result3['body']->buyer->nickname."','".$result3['body']->buyer->phone->area_code.$result3['body']->buyer->phone->number."','"$result3['body']->buyer->alternative_phone->area_code.$result3['body']->buyer->alternative_phone->number"','".$result3['body']->date_created."','".$result3['body']->expiration_date."','".$result3['body']->shipping->status."','".$result3['body']->status."','".$result3['body']->order_items[0]->item->id."','".$result3['body']->order_items[0]->item->title."','Acordar Con el vendedor')";
+                            /*$sql="INSERT INTO ventas (id_orden,id_seller, id_buyer,name_buyer,lastname_buyer,nickname_buyer,phone_buyer,phone_buyer2,fecha_creacion,fecha_expiracion,envio,status,item_id,item_title,thumbnail,payment_type)VALUES ('".$result3['body']->id."','".$result3['body']->buyer->id."','".$result3['body']->seller->id."','".$result3['body']->buyer->first_name."','".$result3['body']->buyer->last_name."','".$result3['body']->buyer->nickname."','".$result3['body']->buyer->phone->area_code.$result3['body']->buyer->phone->number."','"$result3['body']->buyer->alternative_phone->area_code.$result3['body']->buyer->alternative_phone->number"','".$result3['body']->date_created."','".$result3['body']->expiration_date."','".$result3['body']->shipping->status."','".$result3['body']->status."','".$result3['body']->order_items[0]->item->id."','".$result3['body']->order_items[0]->item->title."','".$result2['body']->thumbnail."','Acordar Con el vendedor')";*/
                             $respon=$bd->ejecutar($sql);
                             $array['id']="new_order";
                             $array['mensaje']="Posee una nueva compra de: ".$result3['body']->buyer->nickname;
@@ -100,7 +109,7 @@ if(mysql_num_rows($result)>0)
                             }
                             else
                             {
-                              $sql="INSERT INTO ventas (id_orden,id_seller,id_buyer,nickname_buyer,fecha_creacion,fecha_expiracion,envio,status,item_id,item_title,payment_method,payment_type)VALUES ('".$result3['body']->id."', '".$result3['body']->buyer->id."', '".$result3['body']->seller->id."','".$result3['body']->buyer->nickname."','".$result3['body']->date_created."','".$result3['body']->expiration_date."','".$result3['body']->shipping->status."','".$result3['body']->status."','".$result3['body']->order_items[0]->item->id."','".$result3['body']->order_items[0]->item->title."','".$result3['body']->payments->payment_method_id."','MercadoPago')";
+                              $sql="INSERT INTO ventas (id_orden,id_seller,id_buyer,nickname_buyer,fecha_creacion,fecha_expiracion,envio,status,item_id,item_title,payment_method,payment_type,thumbnail)VALUES ('".$result3['body']->id."', '".$result3['body']->buyer->id."', '".$result3['body']->seller->id."','".$result3['body']->buyer->nickname."','".$result3['body']->date_created."','".$result3['body']->expiration_date."','".$result3['body']->shipping->status."','".$result3['body']->status."','".$result3['body']->order_items[0]->item->id."','".$result3['body']->order_items[0]->item->title."','".$result3['body']->payments->payment_method_id."','MercadoPago','".$result2['body']->thumbnail."')";
                                 $respon=$bd->ejecutar($sql);
                                 $array['id']="new_order";
                                 $array['mensaje']="Posee una nueva compra de: ".$result3['body']->buyer->nickname." por mercado pago";

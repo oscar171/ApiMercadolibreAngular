@@ -58,41 +58,4 @@ angular.module('api2App')
       alert("Ha fallado la petición. Estado HTTP:"+status);
       
     });*/
-    $scope.enviarsms= function()
-    {
-      
-      /*var number='04144378192';
-      var text="Gracias por su compra. Registrese aqui www.venegangas.com para continuar con su pedido "+1111111111+" hecho por mercadolibre";      
-      $http.jsonp('http://www.orioncorp.com.ve:28703/cgi-bin/sendsms?username=program1&password=43912&to='+number+'&text='+text)
-      .then(function(response)
-      {
-       console.log(response);
-      }) */      
-              
-     /*$http.get('controllers/prueba.php')
-      .then(function(response)
-      {
-          console.log(response.data);
-          notify(response.data.mensaje);
-
-          /*
-          if (response.data.id=="new_order")
-             {
-                var num1=response.data.data.telefono1.replace(/[^\d]/g, '');
-                var num2=response.data.data.telefono2.replace(/[^\d]/g, '');
-                var text="Gracias por su compra. Registrese aqui www.venegangas.com para continuar con su pedido "+response.data.data.new_order_id+" hecho por mercadolibre";      
-                $http.jsonp('http://orioncorp.com.ve:28703/cgi-bin/sendsms?username=program1&password=43912&to='+num1+'&text='+text)
-                .then(function(response)
-                {
-                console.log(response);
-                }) 
-              }
-              else
-              {
-                //alert(response.data.mensaje);
-              }
-          
-      })
-      */
-   }
 }]);

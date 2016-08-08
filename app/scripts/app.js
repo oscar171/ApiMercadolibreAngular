@@ -12,7 +12,10 @@ angular
   .module('api2App', [
     'ngRoute',
     'cgNotify',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngTable',
+    'ui.scroll',
+    'ui.scroll.jqlite'
   ])
   .config(function ($routeProvider) {
     $routeProvider

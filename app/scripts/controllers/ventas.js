@@ -8,8 +8,9 @@
  * Controller of the api2App
  */
 angular.module('api2App')
-  .controller('VentasCtrl',['$scope','$http', function ($scope,$http) {
+  .controller('VentasCtrl',['$scope','$http','NgTableParams', function ($scope,$http,NgTableParams) {
     
+
 
   		 $http.get('controllers/ventas.php')
         .then(function(response) {
@@ -19,8 +20,10 @@ angular.module('api2App')
               $scope.title=false;
               $scope.body=true;
               console.log($scope.title,$scope.body);
-             $scope.x=response.data.order;
-            
+              console.log(response.data);
+              var data =[response.data.order];
+              $scope.tableParams = new NgTableParams({}, { dataset: data});
+            console.log(response.data.order);
              
             } else {
               if(response.data.mensaje=="Nodata"){
@@ -30,12 +33,12 @@ angular.module('api2App')
               }else
               {
                 $scope.loading=false;
-              console.log($scope.title);
+                console.log($scope.title);
                 alert(response.data.mensaje);
               }
             }
     });
-
-
-
+/*$scope.body=true;
+console.log($scope.body);
+*/
   }]);

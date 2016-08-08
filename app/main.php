@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet">   
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">   
     <link rel="stylesheet" href="bower_components/angular-notify/dist/angular-notify.min.css" rel="stylesheet">   
+    <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.min.css" rel="stylesheet">   
     <!-- START scripts -->
     <!-- START scripts -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -34,6 +35,8 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/ui-scroll/dist/ui-scroll.min.js"></script>
+    <script src="bower_components/ui-scroll/dist/ui-scroll-jqlite.min.js"></script>
     <script src="js/ui-bootstrap-tpls-2.0.1.min.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
@@ -41,8 +44,8 @@
     <script src="scripts/controllers/resumen.js"></script>
     <script src="scripts/controllers/preguntas.js"></script>
     <script src="scripts/controllers/ventas.js"></script>
-    <script src="js/ini.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>         
+    <script src="bower_components/ng-table/dist/ng-table.min.js"></script>         
     <!-- END scripts -->
     <!--<link rel="stylesheet" href="styles/main.css">-->
     <!-- endbuild -->
@@ -58,7 +61,7 @@
                        <a ng-href="#/"> <h1 class="pointer resumen">OrionCorp</h1></a>
                         <nav class="mv-navigation">
                                 <ul>
-                                    <li popover-title="Notificaciones" popover-placement="bottom"
+                                    <li ng-click='remove()' popover-title="Notificaciones" popover-placement="bottom"
                                         popover-append-to-body="true" popover-trigger="'focus'"
                                         uib-popover-template="'tpl.html'" class="notification-container" tabindex="0" >
                                         <i class="fa fa-globe" ></i>
@@ -80,14 +83,15 @@
 
       <div class="popover-content">
         <div ng-click="remove()" class="row">
-          <ul class="list-unstyled notific col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-repeat="noti in notificaciones">
-          <a style="text-decoration:none" ng-href="{{topic}}">
-            <li><strong>{{noti.mensaje}}</strong></li>
-            <li>{{noti.item}}</li>
-          
-            <hr>
-          </a>
-          </ul>
+          <div ui-scroll-viewport style="height:300px">
+            <div class="col-xs-12 col-sm-12" ui-scroll="noti in notificaciones" buffer-size='3'>
+            <a style="text-decoration:none" ng-href="{{topic}}">
+              <div class="col-xs-12 col-sm-12"><strong>{{noti.mensaje}}</strong></div>
+              <div class="col-xs-5 col-sm-5" ><img class="img-thumbnail img-responsive" src="{{noti.thumbnail}}" alt=""></div>
+              <div class="col-xs-7 col-sm-7">{{noti.item}}</div>
+            </a>
+            </div>
+          </div>
         </div>
       </div> 
     </script>

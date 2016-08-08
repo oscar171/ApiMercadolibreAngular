@@ -12,3 +12,8 @@
 -webkit-border-radius: 10px 10px 10px 10px;
 border: 1px outset #d2cfd6;
 }
+.scroll{
+
+	max-height: 260px !Important;
+	overflow-y: auto !Important;
+}

@@ -3,32 +3,34 @@
    No posee ordenes Activas
  </div>
  <div ng-show="body"> 
-  <table>
+  <table ng-table="tableParams" class="bordered centered">
+  <thead>
     <tr>
-      <th>InfoBuyer</th>
-      <th>InfoItem</th>
-      <th>InfoOrder</th>
+      <th data-field="Informacion del comprador">Informacion del comprador</th>
+      <th data-field="Informacion del acticulo">Informacion del acticulo</th>
+      <th data-field="Informacion de la orden">Informacion de la orden</th>
     </tr>
-    <tbody >
-
+    </thead>
+    <tbody ng-repeat="venta in $data" >
     <tr>
-      <td>{{ x.buyer.first_name}}{{ x.buyer.last_name}}<br>
-      {{ x.buyer.nickname}}<br>
-      {{ x.buyer.phone.number}}</td>
+      <td>Nombre: {{ venta.Comprador}}<br>
+      Pseudonimo: {{ venta.Pseudonimo}}<br>
+      Contacto: {{ venta.Telefonos}}</td>
     
     
-        <td>{{ x.order_items.item.title}}<br>
-        {{ x.order_items.unit_price}}<br>
-        {{ x.order_items.quantity}}</td>
-    
+        <td>Titulo: {{ venta.Item}}
+        <br>
+        Metodo de pago: {{venta.tipo}}
+        </td>
      
-      <td>fecha de creacion:
-        {{ x.date_created | date:"dd-MM-yyyy"}}<br>
-        Fecha de expiracion:
-        {{ x.expiration_date | date:"dd-MM-yyyy"}}<br>
-        Estatus : {{x.status}}<br>
+      <td>
+      Orden Nº: {{ venta.Orden}} <br>
+      fecha de creacion:
+        {{ venta.Comprado | date:"dd-MM-yyyy"}}<br>
+        Pago : {{venta.Pago}}<br>
+        Envio : {{venta.Envio}} <br>
         Calificacion del comprador:
-        {{ x.feedback.purchase.rating}}</td>
+        {{ venta.Calificacion}}</td>
     </tr>
     </tbody>
   </table>
