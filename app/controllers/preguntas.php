@@ -7,54 +7,45 @@ $params = array('access_token' => $_SESSION['access_token'],
                 'seller_id' => $_SESSION['userid'],
                 'attributes' => 'questions,total',
                 'status'=> 'UNANSWERED',
-                'limit'=> '2');
+                'limit' => 5);
 $result3 = $meli->get('/my/received_questions/search', $params);
-if($result3['httpCode']==200){
+if($result3['httpCode']==200)
+{
 $questions=$result3['body']->questions;
 $arrayQuestion['total']=$result3['body']->total;
-if($result3['body']->total!=0){
-        while (!empty($questions)) {
-                        $questions2=array_shift($questions);
-                        $idQuestion=$questions2->id;
-                        $item=$questions2->item_id;
-                        $text=$questions2->text;
-                        $from_id=$questions2->from->id;
-                        $config='title,thumbnail';
-                        $params2 = array('attributes' => $config);
-                        $result2 = $meli->get('/items/'.$item, $params2);
-                        $iteminfo=$result2['body'];
-                        $config='nickname';
-                        $params2 = array('attributes' => $config);
-                        $result2 = $meli->get('/users/'.$from_id, $params2);
-                        $userinfo=$result2['body'];
-                        $element= array('title' => $iteminfo->title,
-                                        'thumbnail' => $iteminfo->thumbnail,
-                                        'nickname' => $userinfo->nickname,
-                                        'text' => $text,
-                                        'idQuestion'=> $idQuestion
-                                        );
-                                        
-                        $arrayElement[]=$element;                
-                                            
-                                            
-                   }
-             $arrayQuestion['question']=$arrayElement;
-             $arrayQuestion['mensaje']='success';
+        if($result3['body']->total!=0)
+        {
+            while (!empty($questions)) 
+            {
+              $questions2=array_shift($questions);
+              $idQuestion=$questions2->id;
+              $item=$questions2->item_id;
+              $text=$questions2->text;
+              $params2 = array('attributes' => 'title');
+              $result2 = $meli->get('/items/'.$item, $params2);
+              $iteminfo=$result2['body'];
+              $element= array(
+              'title' => $iteminfo->title,
+              'text' => $text,
+              'idQuestion'=> $idQuestion);
+                              
+              $arrayElement[]=$element;                
+            }
+        $arrayQuestion['question']=$arrayElement;
+        $arrayQuestion['mensaje']='success';
         }
         else
         {
-                $arrayQuestion['mensaje']='Nodata';
+         $arrayQuestion['mensaje']='Nodata';
         }                    
 }
 else
-{               if($result3['httpCode']==0)
-                {
-                        $arrayQuestion['mensaje']='Error al conectarse a mercadolibre';                 
-                }else
-                {
-                         $arrayQuestion['mensaje']= $result3['body']->message;
+{ 
+ if($result3['httpCode']==0)
+ {$arrayQuestion['mensaje']='Error al conectarse a mercadolibre';}
+ else
+ {$arrayQuestion['mensaje']= $result3['body']->message;}
 }
-                }
        
 
 echo json_encode($arrayQuestion);

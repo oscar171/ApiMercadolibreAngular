@@ -25,6 +25,7 @@ session_destroy();
           $_SESSION['last_name']= $result["body"]->last_name;
           $_SESSION['email_user']= $result["body"]->email;
           $_SESSION['userid']= $result["body"]->id;
+          $_SESSION['phone']=$result['body']->phone->number;
             header('Location: main.php'); 
           }else{
              if($result['httpCode']==0){
@@ -64,6 +65,7 @@ session_destroy();
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <meta http-equiv="Content-Language" content="es"/>
                 <meta name="Description" CONTENT="Author: Carlos Anselmi">
+                <link rel="stylesheet" href="css/style-form.css">
                 <title>login-page</title>
         </head>
         <body>

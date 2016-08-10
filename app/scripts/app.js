@@ -13,8 +13,6 @@ angular
     'ngRoute',
     'cgNotify',
     'ui.bootstrap',
-    'ui.scroll',
-    'ui.scroll.jqlite',
     'ngTable'
   ])
   .config(function ($routeProvider) {
@@ -65,7 +63,7 @@ angular
   })
  .factory('MyData', function($websocket) {
       // Open a WebSocket connection
-      var dataStream = $websocket('ws://windowsboys.com.ve/Api2/app/notificaciones');
+      var dataStream = $websocket('ws://windowsboys.com.ve/Api2/app/');
 
       var collection = [];
 

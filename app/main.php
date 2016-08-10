@@ -35,8 +35,6 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/ui-scroll/dist/ui-scroll.min.js"></script>
-    <script src="bower_components/ui-scroll/dist/ui-scroll-jqlite.min.js"></script>
     <script src="js/ui-bootstrap-tpls-2.0.1.min.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
@@ -105,11 +103,6 @@
             </a>
         </li>
           <li class='sub-menu'>
-                <a ng-href="#/publicar"'>
-                <div class='fa fa-gear'></div>
-                <span>Publicar Productos</span>
-                <!--<div class='fa fa-caret-down right'></div>-->
-                </a>
           <ul>
             <li>
                   <a ng-href="#/publicaciones" class="pointer prod_publicados" >
@@ -146,7 +139,7 @@
     <section class="mv-container-ventas">
     <loading>
    </loading>
-        <div ng-view=""> 
+        <div class="col-sm-12 col-md-12 col-lg-11" ng-view=""> 
 
         </div> 
     </section>

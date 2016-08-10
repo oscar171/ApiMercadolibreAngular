@@ -10,8 +10,8 @@
 angular.module('api2App')
   .controller('ResumenCtrl',['$scope','$http','$interval','notify', function ($scope,$http,$interval,notify) {
 
-    $scope.loading=false;
-    $scope.body=true;
+    $scope.loading=true;
+    $scope.body=false;
     console.log($scope.loading,$scope.body);
 
     $http({

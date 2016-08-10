@@ -257,6 +257,7 @@ angular.module('api2App')
               $scope.notificaciones.unshift({mensaje:response.data.mensaje,item:response.data.title,thumbnail:response.data.thumbnail,topic:"#/ventas"});
               $scope.notiClass='notification-counter';
               $scope.numNotif=parseInt($scope.numNotif+1);
+              /*
               var num1=response.data.data.telefono1.replace(/[^\d]/g, '');
               //var num2=response.data.data.telefono2.replace(/[^\d]/g, '');
               
@@ -265,7 +266,7 @@ angular.module('api2App')
               .then(function(response)
                 {
                 console.log(response);
-                })
+                })*/
               }
               if (response.data.id=="new_question")
              {

@@ -15,7 +15,7 @@ $result3 = $meli->get('/orders/1150765955', $params);
 */
 
     $bd=Db::getInstance();
-    $sql="SELECT * FROM ventas WHERE id_seller='".$_SESSION['userid']."'"; 
+    $sql="SELECT * FROM  `ventas` WHERE id_seller = '".$_SESSION['userid']."' ORDER BY fecha_creacion DESC"; 
     $result=$bd->ejecutar($sql);
     //WHERE userid=".$_SESSION['userid']."";
     if(mysql_num_rows($result)>0)
@@ -58,16 +58,16 @@ $result3 = $meli->get('/orders/1150765955', $params);
                  'Envio' => $envio,
                  'Calificacion' => $rating,
                  'thumbnail'=> $x['thumbnail']);
-        $arrayResult['order'] = $orderData;
+        $elemt[] = $orderData;
         
         }
+        $arrayResult['order']=$elemt;
         $arrayResult['mensaje'] = "success";
     }
     else
     {
         $arrayResult['mensaje']= "nodata";
     }
-  
  echo json_encode($arrayResult);
  ?>
  
