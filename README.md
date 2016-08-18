@@ -1,12 +1,3 @@
 # api2
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.15.1.
-
-## Build & development
-
-Run `grunt` for building and `grunt serve` for preview.
-
-## Testing
-
-Running `grunt test` will run the unit tests with karma.
+Desarrollo de una aplicacion integrando los recursos RESTful, de la api de mercadolibre, junto con el framework angular.
