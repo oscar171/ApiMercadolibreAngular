@@ -42,6 +42,16 @@ angular
         controller: 'VentasCtrl',
         controllerAs: 'ventas'
       })
+      .when('/reportePreguntas', {
+        templateUrl: 'views/reportepreguntas.html',
+        controller: 'ReportepreguntasCtrl',
+        controllerAs: 'reportePreguntas'
+      })
+      .when('/reporteVentas', {
+        templateUrl: 'views/reporteventas.html',
+        controller: 'ReporteventasCtrl',
+        controllerAs: 'reporteVentas'
+      })
       .otherwise({
         redirectTo: '/'
       });

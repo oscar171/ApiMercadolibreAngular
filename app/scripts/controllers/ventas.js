@@ -17,7 +17,8 @@ angular.module('api2App')
   		 $http.get('controllers/ventas.php')
         .then(function(response) 
         {
-            if (response.data.mensaje == "success") {
+            if (response.data.mensaje == "success")
+            {
               $scope.title=false;
               $scope.body=true;
               $scope.loading=false;
@@ -27,12 +28,15 @@ angular.module('api2App')
               $scope.tableParams = new NgTableParams({}, { dataset: data});
             console.log(response.data.order);
              
-            } else {
+            }
+            else
+            {
               if(response.data.mensaje=="nodata"){
               $scope.loading=false;
               $scope.title=true;
               console.log($scope.loading,$scope.title);
-              }else
+              }
+              else
               {
                 $scope.loading=false;
                 console.log($scope.title);

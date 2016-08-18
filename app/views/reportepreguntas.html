@@ -1,0 +1,35 @@
+<div class="row" ng-controller="ReportepreguntasCtrl">
+<loading></loading>
+ <div ng-show="body" class="col-sm-10 col-md-10 col-lg-10""> 
+  <table ng-table="tableParams" class="bordered centered ">
+  <thead>
+    <tr>
+      <th data-field="Vendedor">Vendedor</th>
+      <th data-field="Fecha creacion">Fecha creacion</th>
+      <th data-field="Pregunta">Pregunta</th>
+      <th data-field="Fecha respuesta">Fecha respuesta</th>
+      <th data-field="Respuesta">Respuesta</th>
+    </tr>
+    </thead>
+    <tbody ng-repeat="pregunta in $data" >
+    <tr>
+      <td>
+        {{pregunta.vendedor}}
+      </td>
+      <td>
+        {{pregunta.fechaCreada}}
+      </td>
+      <td>
+      {{pregunta.pregunta}}
+      </td>
+      <td>
+      {{pregunta.fechaRespuesta}}
+      </td>
+      <td>
+      {{pregunta.respuesta}}
+      </td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>

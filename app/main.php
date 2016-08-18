@@ -30,7 +30,7 @@
     <!-- START scripts -->
     <!-- START scripts -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
     <script src="bower_components/angular-notify/dist/angular-notify.min.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -42,6 +42,8 @@
     <script src="scripts/controllers/resumen.js"></script>
     <script src="scripts/controllers/preguntas.js"></script>
     <script src="scripts/controllers/ventas.js"></script>
+    <script src="scripts/controllers/reportepreguntas.js"></script>
+    <script src="scripts/controllers/reporteventas.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>         
     <script src="bower_components/ng-table/dist/ng-table.min.js"></script>         
     <!-- END scripts -->
@@ -122,6 +124,25 @@
             
           </ul>
           </li>
+        <li>
+        <a  id="mv-venegangas" class="pointer" href="" target="_blank">
+          
+              <div class='fa fa-table'></div>
+              <span>Reportes</span>
+        </a>
+            <li class='sub-menu'>
+                <a ng-href="#/reportePreguntas" >
+                <span>Reportes Preguntas</span>
+                <!--<div class='fa fa-caret-down right'></div>-->
+                </a>
+            </li>
+            <li class='sub-menu'>
+                <a href="#/reporteVentas" >
+                <span>Reportes Ventas</span>
+                <!--<div class='fa fa-caret-down right'></div>-->
+                </a>
+            </li>
+        </li>
         <li>
             <a id="mv-venegangas" class="pointer" href="http://venegangas.com/venegangas" target="_blank">
               <div class='fa fa-shopping-bag'></div>

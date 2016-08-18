@@ -1,4 +1,3 @@
-
 <?php 
 session_start();
 require_once '../libs_php/Mercadilivre/Meli/meli.php';
@@ -90,14 +89,14 @@ if(mysql_num_rows($result)>0)
                               {$array=insertar($result3,$bd,$result2,$x);}
 
                             }
-                            if($result3['body']->feedback->purchase!=NULL)
+                            if($result3['body']->feedback->purchase->rating!=NULL)
                             {
                                      
-                              $sql="UPDATE ventas SET status='".$result3['body']->status."',rating='".$result3['body']->feedback->purchase->rating."' WHERE id='".$ver[2]."'";
+                              $sql="UPDATE ventas SET status='".$result3['body']->status."',rating='".$result3['body']->feedback->purchase->rating."' WHERE id='".$result3['body']->id."'";
                               $respon=$bd->ejecutar($sql);
                               if($respon)
                               {
-                                $array['mensaje']="calificacion comprador orden id: ".$ver[2].$respon;
+                                $array['mensaje']="calificacion comprador orden id: ".$result3['body']->id.$respon;
                               }
                               else
                               {
@@ -107,19 +106,19 @@ if(mysql_num_rows($result)>0)
                       }
                       else
                       {
-                        if($result3['body']->feedback->purchase!=NULL)
+                        if($result3['body']->feedback->purchase->rating=NULL)
                           {            
-                           $sql="UPDATE ventas SET rating='".$result3['body']->feedback->purchase->rating."' WHERE id_orden='".$ver[2]."'";
+                           $sql="UPDATE ventas SET rating='".$result3['body']->feedback->purchase->rating."' WHERE id_orden='".$result3['body']->id."'";
                             $respon=$bd->ejecutar($sql);
                               if($respon)
                               {
                                 $sql="DELETE FROM notificaciones WHERE recurso = '".$x['recurso']."'";
                                 $bd->ejecutar($sql);
-                                $array['mensaje']="calificacion comprador orden id: ".$ver[2].$respon;
+                                $array['mensaje']="calificacion comprador orden id: ".$result3['body']->id.$respon;
                               }
                               else
                               {
-                                 print_r($respon);
+                                 $array['mesaje']='no califico correctamente';
                               }
                             }
                             else
@@ -134,7 +133,7 @@ if(mysql_num_rows($result)>0)
                 { $array['mensaje']="Error al conectar con mercadolibre";}
 
           break;
-          case'payments':
+          case 'payments':
 
                     
                     $params = array('access_token' => $_SESSION['access_token']);
@@ -201,23 +200,49 @@ function insertar($result3,$bd,$result2,$x)
       {
         $phone1=$result3['body']->buyer->phone->area_code.$result3['body']->buyer->phone->number;
         $phone2=$result3['body']->buyer->alternative_phone->area_code.$result3['body']->buyer->alternative_phone->number;
+        $phone1=limpiarString($phone1);
+        $phone2=limpiarString($phone2);
+      if(!preg_match("/^[0-9]{11}$/", $phone1)) //check for a pattern of 91-0123456789 
+        { 
+        $phone1="0".$phone1;
+        }
+        if(!preg_match("/^[0-9]{11}$/", $phone2)) //check for a pattern of 91-0123456789 
+        { 
+        $phone2="0".$phone2;
+        }
         $sub=substr($phone1,0,-9);
       if($sub=='02')
         { $num=$_SESSION['phone'];}
         else
         {$num=$phone1;}
+        $sub=substr($phone2,0,-9);
+      if($sub=='02')
+        { $num2=$_SESSION['phone'];}
+        else
+        {$num2=$phone1;}
         $array['data']=array
         (
         "telefono1"=>$num,
-        "telefono2"=>$result3['body']->buyer->alternative_phone->area_code.$result3['body']->buyer->alternative_phone->number,
+        "telefono2"=>$num2,
         "new_order_id"=>$result3['body']->id
         );
       }
       else
       {
+        $phone1=$result3['body']->buyer->phone->area_code.$result3['body']->buyer->phone->number;
+        $phone1=limpiarString($phone1);
+      if(!preg_match("/^[0-9]{11}$/", $phone1)) //check for a pattern of 91-0123456789 
+        { 
+        $phone1="0".$phone1;
+        }
+        $sub=substr($phone1,0,-9);
+      if($sub=='02')
+        { $num=$_SESSION['phone'];}
+        else
+        {$num=$phone1;}
       $array['data']=array
         (
-        "telefono1"=>$result3['body']->buyer->phone->area_code.$result3['body']->buyer->phone->number,
+        "telefono1"=>$num,
         "telefono2"=> NULL,
         "new_order_id"=>$result3['body']->id
         ); 
@@ -255,5 +280,9 @@ $array['title']=$result2['body']->title;
 $array['thumbnail']=$result2['body']->thumbnail;
 return $array;
 }
+function limpiarString($texto)
+{
+      $textoLimpio = preg_replace('([^A-Za-z0-9])', '', $texto);                
+      return $textoLimpio;
+}
  ?>
-

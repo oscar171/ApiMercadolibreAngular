@@ -230,7 +230,7 @@ angular.module('api2App')
   .controller('IndexCtrl',['$scope','$http','$sce','$interval','notify', function ($scope,$http,$sce,$interval,notify){
 
     $scope.numNotif='';
-    $scope.notificaciones=[{mensaje:"Te Preguntaron algo",item:"Camisa Manga Larga Tommy",topic:"#/preguntas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"},{mensaje:"Te Preguntaron algo",item:"items2",topic:"#/preguntas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"},{mensaje:"Te compraron algo",item:"items3",topic:"#/ventas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"},{mensaje:"Te compraron algo",item:"items3",topic:"#/ventas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"},{mensaje:"Te compraron algo",item:"items3",topic:"#/ventas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"},{mensaje:"Te compraron algo",item:"items3",topic:"#/ventas",thumbnail:"http://mlv-s2-p.mlstatic.com/645721-MLV20829267190_072016-I.jpg"}];
+    $scope.notificaciones=[];
     $http({
     method: 'GET', 
     url: 'controllers/mainControl.php'
@@ -243,9 +243,11 @@ angular.module('api2App')
       alert("Ha fallado la petición. Estado HTTP:"+status);
       
     });
+    /*
     $interval(function () {
                    $scope.nuevanotif();
-                }, 10000);
+                }, 10000);*/
+
       $scope.nuevanotif= function()
     { 
      $http.get('controllers/prueba.php')
@@ -254,27 +256,68 @@ angular.module('api2App')
           console.log(response);
           if (response.data.id=="new_order")
              {
+              console.log(response.data);
+              if($scope.notificaciones){
+
               $scope.notificaciones.unshift({mensaje:response.data.mensaje,item:response.data.title,thumbnail:response.data.thumbnail,topic:"#/ventas"});
               $scope.notiClass='notification-counter';
               $scope.numNotif=parseInt($scope.numNotif+1);
-              /*
-              var num1=response.data.data.telefono1.replace(/[^\d]/g, '');
-              //var num2=response.data.data.telefono2.replace(/[^\d]/g, '');
               
-              var text="Gracias por su compra. Registrese aqui www.venegangas.com para continuar con su pedido "+response.data.data.new_order_id+" hecho por mercadolibre";      
-              $http.jsonp('http://orioncorp.com.ve:28703/cgi-bin/sendsms?username=program1&password=43912&to='+num1+'&text='+text)
+              var num1=response.data.data.telefono1;           
+              var num2=response.data.data.telefono2;           
+              var text="Gracias por su compra hecha por mercadolibre, www.venegangas.com";      
+              $http.jsonp('https://www.orioncorp.com.ve/mprs/sms_enviar.php?numero='+num1+'&texto='+text)
               .then(function(response)
                 {
                 console.log(response);
-                })*/
+                })
+              if(num2){
+
+                $http.jsonp('https://www.orioncorp.com.ve/mprs/sms_enviar.php?numero='+num2+'&texto='+text)
+              .then(function(response)
+                {
+                console.log(response);
+                })
+              }
+              }
+              else
+              {
+              $scope.notificaciones.push({mensaje:response.data.mensaje,item:response.data.title,thumbnail:response.data.thumbnail,topic:"#/ventas"});
+              $scope.notiClass='notification-counter';
+              $scope.numNotif=parseInt($scope.numNotif+1);
+              
+              var num1=response.data.data.telefono1;           
+              var num2=response.data.data.telefono2;           
+              var text="Gracias por su compra. Registrese aqui www.venegangas.com para continuar con su pedido "+response.data.data.new_order_id+" hecho por mercadolibre";      
+              $http.jsonp('https://www.orioncorp.com.ve/mprs/sms_enviar.php?numero='+num1+'&texto='+text)
+              .then(function(response)
+                {
+                console.log(response);
+                })
+              if(num2){
+
+                $http.jsonp('https://www.orioncorp.com.ve/mprs/sms_enviar.php?numero='+num2+'&texto='+text)
+              .then(function(response)
+                {
+                console.log(response);
+                })
+              }
+
+              }
               }
               if (response.data.id=="new_question")
              {
-              $scope.notificaciones.unshift({mensaje:response.data.mensaje,item:response.data.title,thumbnail:response.data.thumbnail,topic:"#/preguntas"});
+              if($scope.notificaciones)
+             {
+$scope.notificaciones.unshift({mensaje:response.data.mensaje,item:response.data.title,thumbnail:response.data.thumbnail,topic:"#/preguntas"});
               $scope.notiClass='notification-counter';
               $scope.numNotif=parseInt($scope.numNotif+1);   
+             }else
+             {$scope.notificaciones.push({mensaje:response.data.mensaje,item:response.data.title,thumbnail:response.data.thumbnail,topic:"#/preguntas"});
+              $scope.notiClass='notification-counter';
+              $scope.numNotif=parseInt($scope.numNotif+1);
              }
-          
+            }
       })
     }
 

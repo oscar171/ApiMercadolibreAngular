@@ -11,7 +11,7 @@ session_destroy();
   if($_GET['code'] && !(isset($_SESSION['access_token']))) {
     // If the code was in get parameter we authorize
     session_start('test');
-    $user = $meli->authorize($_GET['code'], 'http://localhost/ApiMercadolibreAngular/app/index.php');
+    $user = $meli->authorize($_GET['code'], 'http://localhost/ApiMercadolibreAngular/app');
     // Now we create the sessions with the authenticated user
     $_SESSION['access_token'] = $user['body']->access_token;
     $_SESSION['expires_in'] = time() + $user['body']->expires_in;
@@ -69,12 +69,12 @@ session_destroy();
                 <title>login-page</title>
         </head>
         <body>
-                <div class="login-page">
+        <div class="login-page">
                         <div class="form">
                                 <p class="orioncorp">OrionCorp</p>
                                 <form action="profile.html" class="login-form" method="get" accept-charset="utf-8">
                                 <?php echo '<a class="button-form" href="'.
-                                $meli->getAuthUrl('http://localhost/ApiMercadolibreAngular/app/index.php').'">AUTENTICAR</a>'; ?>
+                                $meli->getAuthUrl('http://localhost/ApiMercadolibreAngular/app').'">AUTENTICAR</a>'; ?>
                                 <!-- AUTENTICACION DEL CALL-BACK -->
                                 </form>
                         </div>  

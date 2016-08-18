@@ -1,10 +1,5 @@
 <?php 
 session_start();
-require_once '../libs_php/Mercadilivre/Meli/meli.php';
-require_once '../config.php';
-$meli = new Meli(APP_ID, APP_KEY);
-
-
 include_once '../DBconexion/DB.class.php';
 /*Incluimos el fichero de la clase Conf*/
 include_once '../DBconexion/Conf.class.php';
