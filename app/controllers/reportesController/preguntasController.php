@@ -1,22 +1,30 @@
 <?php 
+
+/**
+* @author : oscar perez <oscarp171@gmail.com>
+* @version: 1.0
+* @package: obtenemos los datos de todas las preguntas que le fueron realizada a todos los vendedores, 
+*es decir todas las cuentas que han sido asociadas a la aplicacion.
+*(SOLO VISIBLE PARA LOS USUARIOS ADMINISTRADOR) 
+*
+*/
+
 session_start();
-require_once '../../DBconexion/DB.class.php';
+include_once '../../DBconexion/DB.class.php';
 /*Incluimos el fichero de la clase Conf*/
-require_once '../../DBconexion/Conf.class.php';
+include_once '../../DBconexion/Conf.class.php';
 
     $bd=Db::getInstance();
-    $sql="SELECT * FROM  `preguntas` WHERE id_seller = '".$_SESSION['userid']."' ORDER BY fecha_creacion DESC"; 
+    $sql="SELECT seller_id,fechaCreada,pregunta,respuesta FROM  `preguntas_ml` ORDER BY fechaCreada DESC LIMIT 3"; 
     $result=$bd->ejecutar($sql);
-    //WHERE userid=".$_SESSION['userid']."";
-    if(mysql_num_rows($result)>0)
+    if(mysqli_num_rows($result)>0)
     {
         while ($x=$bd->obtener_fila($result,0)) {
-
+            $date= new DateTime($x['fechaCreada']);
            
            $preguntaData=array('vendedor' => $x['seller_id'],
-                 'fechaCreada' => $x['fechaCreada'],
+                 'fechaCreada' => $date->format('d-m-Y'),
                  'pregunta' => $x['pregunta'],
-                 'fechaRespuesta' => $x['fechaRespuesta'],
                  'respuesta'=> $x['respuesta']);
         $elemt[] = $preguntaData;
         
@@ -28,5 +36,8 @@ require_once '../../DBconexion/Conf.class.php';
     {
         $arrayResult['mensaje']= "nodata";
     }
- echo json_encode($arrayResult);
+
+
+echo json_encode($arrayResult);
+
  ?>

@@ -6,12 +6,13 @@ require_once 'libs_php/Mercadilivre/Meli/meli.php';
 require_once 'config.php';
 $meli = new Meli(APP_ID, APP_KEY);
 if(isset($_GET['code']) || isset($_SESSION['access_token'])) {
-session_destroy();
   // If code exist and session is empty
-  if($_GET['code'] && !(isset($_SESSION['access_token']))) {
+  session_destroy();
+  if($_GET['code'] && !(isset($_SESSION['access_token']))) 
+  {
     // If the code was in get parameter we authorize
     session_start('test');
-    $user = $meli->authorize($_GET['code'], 'http://localhost/ApiMercadolibreAngular/app');
+    $user = $meli->authorize($_GET['code'], 'https://www.venegangas.com/Api2/app/index.php');
     // Now we create the sessions with the authenticated user
     $_SESSION['access_token'] = $user['body']->access_token;
     $_SESSION['expires_in'] = time() + $user['body']->expires_in;
@@ -36,7 +37,9 @@ session_destroy();
              }       
           }
     }
-  } else {
+  } 
+  else 
+  {
     // We can check if the access token in invalid checking the time
     if($_SESSION['expires_in'] < time()) {
       try {
@@ -69,12 +72,12 @@ session_destroy();
                 <title>login-page</title>
         </head>
         <body>
-        <div class="login-page">
+                <div class="login-page">
                         <div class="form">
                                 <p class="orioncorp">OrionCorp</p>
                                 <form action="profile.html" class="login-form" method="get" accept-charset="utf-8">
                                 <?php echo '<a class="button-form" href="'.
-                                $meli->getAuthUrl('http://localhost/ApiMercadolibreAngular/app').'">AUTENTICAR</a>'; ?>
+                                $meli->getAuthUrl('https://www.venegangas.com/Api2/app/index.php').'">AUTENTICAR</a>'; ?>
                                 <!-- AUTENTICACION DEL CALL-BACK -->
                                 </form>
                         </div>  

@@ -13,18 +13,19 @@ angular
     'ngRoute',
     'cgNotify',
     'ui.bootstrap',
-    'ngTable'
+    'ngTable',
+    'infinite-scroll'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/publicaciones', {
-        templateUrl: 'views/main.html',
+        templateUrl: 'views/publicaciones.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
       .when('/publicar', {
         templateUrl: 'controllers/products_no_publicados.php',
-        controller: 'AboutCtrl',
+        controller: 'productsnopublicados',
         controllerAs: 'About'
       })
       .when('/', {
@@ -54,7 +55,7 @@ angular
       })
       .otherwise({
         redirectTo: '/'
-      });
+      })
   })
   .directive('loading', function () {
       return {
@@ -70,23 +71,4 @@ angular
               });
         }
       }
-  })
- .factory('MyData', function($websocket) {
-      // Open a WebSocket connection
-      var dataStream = $websocket('ws://windowsboys.com.ve/Api2/app/');
-
-      var collection = [];
-
-      dataStream.onMessage(function(message) {
-        collection.push(JSON.parse(message.data));
-      });
-
-      var methods = {
-        collection: collection,
-        get: function() {
-          dataStream.send(JSON.stringify({ action: 'get' }));
-        }
-      };
-
-      return methods;
-    });
+  });

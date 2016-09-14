@@ -1,17 +1,20 @@
 <div class="row" ng-controller="ReportepreguntasCtrl">
 <loading></loading>
- <div ng-show="body" class="col-sm-10 col-md-10 col-lg-10""> 
-  <table ng-table="tableParams" class="bordered centered ">
+ <div ng-show="body" class="col-sm-12 col-md-12 col-lg-12 table-responsive"">
+
+   <div class="input-field">
+      <input class="input-buscar" placeholder="Buscar pregunta" id="first_name" type="text" ng-model="string" >
+    </div>
+  <table class="table"  infinite-scroll="getMoreData()">
   <thead>
     <tr>
       <th data-field="Vendedor">Vendedor</th>
-      <th data-field="Fecha creacion">Fecha creacion</th>
+      <th data-field="Fecha creacion">FechaCreacion</th>
       <th data-field="Pregunta">Pregunta</th>
-      <th data-field="Fecha respuesta">Fecha respuesta</th>
       <th data-field="Respuesta">Respuesta</th>
     </tr>
     </thead>
-    <tbody ng-repeat="pregunta in $data" >
+    <tbody ng-repeat="pregunta in data | filter: string" >
     <tr>
       <td>
         {{pregunta.vendedor}}
@@ -23,13 +26,11 @@
       {{pregunta.pregunta}}
       </td>
       <td>
-      {{pregunta.fechaRespuesta}}
-      </td>
-      <td>
       {{pregunta.respuesta}}
       </td>
 
     </tr>
     </tbody>
   </table>
+
 </div>

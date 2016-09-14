@@ -2,7 +2,7 @@
 //CONFIGURACION DE CONEXION DE LA BASE DE DATOS
 // --------------------------------------------
 //---------------------HOTS--------------------
-$host='www.venegangas.com';
+$host='localhost';
 // --------------------------------------------
 //---------------------USER--------------------
 $user='venegang_api';

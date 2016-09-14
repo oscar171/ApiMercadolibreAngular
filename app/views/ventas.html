@@ -3,38 +3,44 @@
  <div ng-show="title">
    No posee ordenes Activas
  </div>
- <div ng-show="body" class="col-sm-10 col-md-10 col-lg-10"> 
-  <table ng-table="tableParams" class="bordered centered ">
-  <thead>
-    <tr>
-      <th data-field="Informacion del comprador">Informacion del comprador</th>
-      <th data-field="Informacion del acticulo">Informacion del acticulo</th>
-      <th data-field="Informacion de la orden">Informacion de la orden</th>
-    </tr>
-    </thead>
-    <tbody ng-repeat="venta in $data" >
-    <tr>
-      <td><strong>Nombre:</strong> {{ venta.Comprador}}<br>
-      <strong>Pseudonimo:</strong> {{ venta.Pseudonimo}}<br>
-      <strong>Contacto:</strong> {{ venta.Telefonos}}</td>
-    
-    
-        <td>
-        <img class="img-thumbnail" src="{{venta.thumbnail}}" alt=""><br>
-        <strong>Titulo:</strong> {{ venta.Item}}
-        <br>
-        <strong>Metodo de pago:</strong> {{venta.tipo}}
-        </td>
-     
-      <td>
-      <strong>Orden Nº:</strong> {{ venta.Orden}} <br>
-      <strong>fecha de creacion:</strong>
-        {{ venta.Comprado | date:"dd-MM-yyyy"}}<br>
-        <strong>Pago :</strong> {{venta.Pago}}<br>
-        <strong>Envio :</strong> {{venta.Envio}} <br>
-        <strong>Calificacion del comprador:</strong>
-        {{ venta.Calificacion}}</td>
-    </tr>
-    </tbody>
-  </table>
+   <div ng-show="body">
+     <div class="col-md-12 col-lg-12">
+      <div class="input-field">
+      <input class="input-buscar class" placeholder="Buscar venta" id="first_name" type="text" ng-model="string" >
+    </div>
+      <table ng-table="tableParams" class="bordered centered ">
+      <thead>
+        <tr>
+          <th data-field="Informacion del comprador">Informacion del comprador</th>
+          <th data-field="Informacion del acticulo">Informacion del acticulo</th>
+          <th data-field="Informacion de la orden">Informacion de la orden</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="venta in $data | filter:string" >
+        <tr>
+          <td><strong>Nombre:</strong> {{ venta.Comprador}}<br>
+          <strong>Pseudonimo:</strong> {{ venta.Pseudonimo}}<br>
+          <strong>Contacto:</strong> {{ venta.Telefonos}}</td>
+        
+        
+            <td>
+            <img class="img-thumbnail" src="{{venta.thumbnail}}" alt=""><br>
+            <strong>Titulo:</strong> {{ venta.Item}}
+            <br>
+            <strong>Metodo de pago:</strong> {{venta.tipo}}
+            </td>
+         
+          <td>
+          <strong>Orden Nº:</strong> {{ venta.Orden}} <br>
+          <strong>fecha de creacion:</strong>
+            {{ venta.Comprado | date:"dd-MM-yyyy"}}<br>
+            <strong>Pago :</strong> {{venta.Pago}}<br>
+            <strong>Envio :</strong> {{venta.Envio}} <br>
+            <strong>Calificacion del comprador:</strong>
+            {{ venta.Calificacion}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

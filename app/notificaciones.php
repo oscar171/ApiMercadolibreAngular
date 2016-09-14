@@ -13,13 +13,10 @@ exit;
 }
 else{
 
-header("HTTP/1.1 200 OK");
-
-
 $notif =file_get_contents("php://input");
 $opcion=json_decode($notif);
 
-$sql = sprintf("INSERT INTO `notificaciones` (`recurso`, `userid`, `topic`) 
+$sql = sprintf("INSERT INTO `notificaciones_ml` (`recurso`, `userid`, `topic`) 
               VALUES ('%s', '%s', '%s')"
               , mysqli_real_escape_string( $con, $opcion->resource )
               , mysqli_real_escape_string( $con, $opcion->user_id )
@@ -28,8 +25,7 @@ $datos = mysqli_query($con, $sql);
 if($datos)
 {
 
-
-
+header("HTTP/1.1 200 OK");
 }
 
 
@@ -39,5 +35,5 @@ $items2 = array('resource' => $opcion->resource,
 				'recibido'=>$opcion->received,
                  'resultado'=>$datos);
    
-file_put_contents('notifica.txt',json_encode($items2).",", FILE_APPEND);
+file_put_contents('notifica.txt',json_encode($items2).chr(13).chr(10), FILE_APPEND);
 }

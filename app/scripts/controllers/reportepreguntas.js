@@ -8,34 +8,46 @@
  * Controller of the api2App
  */
 angular.module('api2App')
-  .controller('ReportepreguntasCtrl',['$scope','$http','NgTableParams','notify', function ($scope,$http,NgTableParams,notify) {
+  .controller('ReportepreguntasCtrl',['$scope','$http','notify', function ($scope,$http,notify)
+  {
     
+    var data2=[];
+    $scope.data=[];
     $scope.body=false;
     $scope.loading=true;
     console.log($scope.body,$scope.loading);
   		 $http.get('controllers/reportesController/preguntasController.php')
         .then(function(response) 
         {
-        	console.log(response.data);
-            if (response.data.mensaje == "success") {
+        	console.log(response);
+            if (response.data.mensaje == "success")
+            {
               $scope.title=false;
               $scope.body=true;
               $scope.loading=false;
               console.log($scope.title,$scope.body,$scope.loading);
-              console.log(response.data);
-              var data =response.data.preguntas;
-              $scope.tableParams = new NgTableParams({}, { dataset: data});
-            console.log(response.data.preguntas);
+              data2 =response.data.preguntas;
+              $scope.data=data2.slice(0,15);
              
-            } else {
-              if(response.data.mensaje=="nodata"){
+            } 
+            else
+            {
+              if(response.data.mensaje=="nodata")
+              {
+                console.log(response);
               $scope.loading=false;
               console.log($scope.loading);
               }else
               {
                 $scope.loading=false;
-                notify(response.data.mensaje);
+                notify(response.data.preguntas);
               }
             }
       });
+
+      $scope.getMoreData = function () 
+      {
+       $scope.data = data2.slice(0, $scope.data.length + 10);
+      }
+     
   }]);

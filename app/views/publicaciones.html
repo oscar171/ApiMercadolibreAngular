@@ -1,0 +1,52 @@
+
+  <loading>
+  </loading>
+  <div class="input-field">
+      <input class="input-buscar" placeholder="Buscar producto" id="first_name" type="text" ng-model="string" >
+    </div>              
+    <div class=" offset-s1 left button-nav">
+    <uib-tabset  justified="true">
+    <uib-tab index="0" ng-click=orderBY('') heading="Todas"></uib-tab>
+    <uib-tab index="1" ng-click=orderBY('active') heading="Activas"></uib-tab>
+    <uib-tab index="2" ng-click=orderBY('paused') heading="Pausadas"></uib-tab>
+    <uib-tab index="3" ng-click=orderBY('closed') heading="Finalizadas"></uib-tab>
+  
+  
+    <!-- START TABLE -->
+  <div class="table-responsive">
+    <table class="table">
+          <thead>
+            <tr>
+                <th data-field="status">Estatus</th>
+                <th data-field="id">Imagen</th>
+                <th data-field="id">Id</th>
+                <th data-field="Title">Titulo</th> 
+                <th data-field="Price">Precio</th>
+                <th data-field="Status">Acciones</th>
+               
+            </tr>
+          </thead>
+          <tbody ng-repeat="x in listProduct  | filter: test | filter: string">
+          
+            <tr >
+              <td >{{ x.status }}</td>
+              <td ><img src="{{ x.thumbnail}}" alt=""></td>
+              <td >{{ x.id}} </td>
+              <td >{{ x.title}} </td>
+              <td >{{ x.price | currency:"BsF"}} </td>
+              <td>
+
+                <button ng-click="ChangeStatus( x )" class="btn btn-info btn-sm">{{x.accion}}</button>
+                <button ng-click="ChangeFinish( x, $index )" class="btn btn-danger btn-sm">{{x.accion2}}</button>
+              </td>
+            </tr>          
+          </tbody>
+    </table>
+    </div>
+    </uib-tabset>
+    </div>
+  </div>
+  <!-- END TABLE -->
+  
+    
+</div>

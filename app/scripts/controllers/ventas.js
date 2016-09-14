@@ -14,27 +14,27 @@ angular.module('api2App')
     $scope.body=false;
     $scope.loading=true;
     console.log($scope.title,$scope.body,$scope.loading);
-  		 $http.get('controllers/ventas.php')
+  		  $http.get('controllers/ventasController/ventas.php')
         .then(function(response) 
-        {
+        { 
+          console.log(response);
+
             if (response.data.mensaje == "success")
             {
               $scope.title=false;
               $scope.body=true;
               $scope.loading=false;
               console.log($scope.title,$scope.body,$scope.loading);
-              console.log(response.data);
               var data =response.data.order;
               $scope.tableParams = new NgTableParams({}, { dataset: data});
-            console.log(response.data.order);
-             
             }
-            else
+            else 
             {
-              if(response.data.mensaje=="nodata"){
-              $scope.loading=false;
-              $scope.title=true;
-              console.log($scope.loading,$scope.title);
+              if(response.data.mensaje=="nodata")
+              {
+                $scope.loading=false;
+                $scope.title=true;
+                console.log($scope.loading,$scope.title);
               }
               else
               {
@@ -45,3 +45,4 @@ angular.module('api2App')
             }
       });
   }]);
+

@@ -99,3 +99,7 @@
 }
 
 .content { padding: 1.5em; }
+
+.nav-tabs.nav-justified > .active > a{
+  background-color: #FFF059 !important;
+}

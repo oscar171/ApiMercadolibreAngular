@@ -30,12 +30,12 @@
     <!-- START scripts -->
     <!-- START scripts -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>-->
+    <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-notify/dist/angular-notify.min.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="js/ui-bootstrap-tpls-2.0.1.min.js"></script>
+    <script src="js/ng-infinite-scroll.min.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/about.js"></script>

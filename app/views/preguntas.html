@@ -3,24 +3,28 @@
 <h3 class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 " ng-show="title" for="">No posee preguntas sin responder</h3>
   <div  ng-show="body">
     <div class="row">
-      <div class="col-md-12 col-md-offset-3">
+    <div class="col-md-12 col-lg-12">
+      <div class="col-md-5 col-md-offset-1">
       <h3 for=""> Preguntas  sin responder</h3>
-      <button class="btn btn-info" ng-click="obtenermas()">Obtener mas Preguntas</button>
-      
       </div>
-      <hr>
+      <div class="col-md-5 col-md-offset-1" >
+      <button class="btn btn-warning btn-sm" ng-click="obtenermas()">Obtener mas Preguntas</button>
+      </div>
+    </div>
     </div>
     <ul class="row" ng-repeat="list in listed">
           
         <li> 
-        <button class="col-sm-8 col-md-8 col-lg-8 col-sm-offset-1 col-md-offset-1 col-lg-offset-1" type="button" class="btn btn-info btn-sm" ng-click="isCollapsed = !isCollapsed">
-           <div><strong>Acticulo:</strong>  {{list.title}}</div> <br> <strong>Pregunta:</strong>  <pre>{{list.text}}</pre>
-        </button>
+        <div class="col-sm-8 col-md-8 col-lg-8 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 btn btn-default btn-sm" style="background-color: #FFF059;" type="button"  ng-click="isCollapsed = !isCollapsed">
+           <div><strong>Acticulo:</strong>  {{list.title}}</div> 
+           <p><b>Pregunta:</b></p>
+           <textarea  rows="3" style="width: 100%; resize:vertical; padding: 3px; cursor: inherit;" readonly>{{list.text}}</textarea>
+        </div>
         <div uib-collapse="isCollapsed">
           <div class="well well-lg col-sm-8 col-md-8 col-lg-8 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
-            <textarea ng-model="modal.anwers" name="" id="" cols="60" rows="3"></textarea>
-            <button type="button" ng-click="anwers(list,modal,$index)" class="btn btn-primary">Responder</button>
-            <button type="button" ng-click="delete(list,$index)" class="btn btn-danger">Eliminar</button>
+            <textarea class="form-control" ng-model="modal.anwers" name="" id="" cols="60" rows="3"></textarea>
+            <button type="button" ng-click="anwers(list,modal,$index)" class="btn btn-primary btn-sm">Responder</button>
+            <button type="button" ng-click="delete(list,$index)" class="btn btn-danger btn-sm">Eliminar</button>
           </div>
         </div>
         </li> 
